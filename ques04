@@ -1,0 +1,34 @@
+#include <stdio.h>
+int ISPRIME(int num){
+    int i;
+    if (num <= 1)
+        return 0;    /* 0 and 1 are not primes */
+    for (i = 2; i * i <= num; i++){
+        if (num % i == 0)
+            return 0;
+    }
+    return 1;
+}
+int main(void){
+    int start, end, n;
+    printf("Enter the starting value of the range: ");
+    scanf("%d", &start);
+    printf("Enter the ending value of the range: ");
+    scanf("%d", &end);
+    if (start > end){
+        /* swap if user entered in reverse */
+        int temp = start;
+        start = end;
+        end = temp;
+    }
+    printf("Prime numbers between %d and %d are:\n", start, end);
+    for (n = start; n <= end; n++){
+        if (ISPRIME(n))
+        {
+            printf("%d ", n);
+        }
+    }
+    printf("\n");
+    return 0;
+}
+
