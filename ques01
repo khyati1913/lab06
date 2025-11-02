@@ -1,0 +1,46 @@
+finding the binomial coefficient using recursive plus non -recursive functions
+#include <stdio.h>
+/* recursive factorial */
+int fact_rec(int n){
+    if (n == 0)
+        return 1;
+    return n * fact_rec(n - 1);
+}
+/* iterative factorial */
+int fact_iter(int n){
+    int i, result = 1;
+    for (i = 1; i <= n; i++){
+        result = result * i;
+    }
+    return result;
+}
+
+/* binomial coefficient using iterative factorial */
+int binomial(int n, int r){
+    if (r < 0 || r > n)
+        return 0;       /* invalid case */
+    return fact_iter(n) / ( fact_iter(r) * fact_iter(n - r) );
+}
+
+int main(void){
+    int n, r;
+    int max_n = 10;
+    printf("Tabulation of binomial coefficients C(n,r) for n=0..%d\n", max_n);
+    printf(" (using simple data types)\n\n");
+    for (n = 0; n <= max_n; n++){
+        for (r = 0; r <= n; r++){
+            int c = binomial(n, r);
+            printf("C(%2d, %2d) = %6d   ", n, r, c);
+        }
+        printf("\n");
+    }
+
+    /* Demonstrate factorials */
+    {
+        int x = 5;
+        printf("\nFactorial of %d (recursive) = %d\n", x, fact_rec(x));
+        printf("Factorial of %d (iterative) = %d\n", x, fact_iter(x));
+    }
+
+    return 0;
+}
