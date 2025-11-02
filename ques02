@@ -1,0 +1,29 @@
+#include <stdio.h>
+/* recursive function to compute GCD using the Euclidean algorithm */
+int GCD(int a, int b){
+    if (b == 0)
+        return a;
+    return GCD(b, a % b);
+}
+int main(void){
+    int num1, num2, result;
+    printf("Enter two integers: ");
+    scanf("%d %d", &num1, &num2);
+    /* handle negative or zero inputs simply */
+    if (num1 < 0) num1 = - num1;
+    if (num2 < 0) num2 = - num2;
+    if (num1 == 0 && num2 == 0) {
+        printf("GCD is undefined for both numbers being 0.\n");
+        return 0;
+    }
+    /* ensure larger first or just call function */
+    if (num2 > num1) {
+        /* swap */
+        int temp = num1;
+        num1 = num2;
+        num2 = temp;
+    }
+    result = GCD(num1, num2);
+    printf("GCD of %d and %d is %d\n", num1, num2, result);
+    return 0;
+}
