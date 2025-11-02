@@ -1,0 +1,27 @@
+#include <stdio.h>
+/* recursive function: returns the n-th Fibonacci number (0-based) */
+int FIBO(int n){
+    if (n == 0)
+        return 0;
+    else if (n == 1)
+        return 1;
+    else
+        return FIBO(n - 1) + FIBO(n - 2);
+}
+
+int main(void){
+    int num, i;
+    printf("Enter the number of terms of the Fibonacci sequence to generate: ");
+    scanf("%d", &num);
+    if (num <= 0){
+        printf("Number of terms must be positive.\n");
+    }
+    else{
+        printf("Fibonacci sequence (first %d terms):\n", num);
+        for (i = 0; i < num; i++){
+            printf("%d ", FIBO(i));
+        }
+        printf("\n");
+    }
+    return 0;
+}
